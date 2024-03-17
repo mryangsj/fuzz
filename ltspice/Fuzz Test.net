@@ -1,0 +1,48 @@
+* \\Mac\Home\Desktop\fuzz\ltspice\Fuzz Test.asc
+R5 N003 N008 22k
+R3 N004 N011 220k
+Vcc N005 0 9
+R81 N013 0 22k
+R92 N014 0 R=V(alpha_vol)*Rvol
+R72 N011 0 50k
+Vin input 0 wavefile="./x.wav" chan=0
+Rout output 0 100k
+R93 N009 N014 R=(1-V(alpha_vol))*Rvol
+R4 N003 N004 R=(1-V(alpha_lin))*Rlin
+R6 N004 0 R=V(alpha_lin)*Rlin
+V2 alpha_lin 0 PWL(0 0.5 10 0.5)
+Rin N010 input 22k
+C71 N011 N010 4.7µ
+C94 N009 N008 4.7µ
+C81 N013 0 4.7µ
+C91 output N014 4.7µ
+R7 N012 0 40k
+Rout1 output_port9 0 100k
+R8 N007 N012 10k
+C1 output_port9 N012 4.7µ
+V4 N006 0 wavefile = "./x.wav" chan=0
+C2 N007 N006 4.7µ
+R9 output_port8 0 22k
+C3 output_port8 0 4.7µ
+V3 output_port8 0 wavefile = "./x.wav" chan=0
+R10 output_port7 0 50k
+Vin1 N002 0 wavefile="./x.wav" chan=0
+Rin1 N001 N002 22k
+C4 output_port7 N001 4.7µ
+R11 output_port7 0 100k
+R2 N008 N011 12k
+R1 N011 N013 23k
+R12 N003 N005 1e-2
+V1 alpha_vol 0 PWL(0 0.5 10 0.5)
+.tran 0.1
+.param Rlin 10k
+.wav "./output_fuzz_static.wav" 32 {Fs} V(output)
+.wav "./input_fuzz_static.wav" 32 {Fs} V(input)
+.wav "./output_port9.wav" 32 48k V(output_port9)
+.wav "./output_port8.wav" 32 48k V(output_port8)
+.wav "./output_port7.wav" 32 48k V(output_port7)
+.include "./standard.bjt"
+.param Rvol 50k
+.param Fs 48000
+.backanno
+.end
