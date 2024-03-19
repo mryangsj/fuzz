@@ -1,4 +1,9 @@
 .DS_Store
+
+__pycache__/
 .idea/
 .vscode/
-__pycache__/
+ltspice/**/*.raw
+ltspice/**/*.log
+ltspice/**/*.net
+ltspice/**/*.wav
