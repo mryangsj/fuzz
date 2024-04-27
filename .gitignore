@@ -1,0 +1,13 @@
+.DS_Store
+
+__pycache__/
+.idea/
+.vscode/
+build/
+juce_plugin/cmake-build-debug/
+juce_plugin/cmake-build-release/
+ltspice/**/*.raw
+ltspice/**/*.log
+ltspice/**/*.net
+ltspice/**/*.wav
+ltspice/**/*.fastRaw
